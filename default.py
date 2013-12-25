@@ -3,11 +3,11 @@ import xbmcgui
 import xbmcvfs
 
 
-def getfiles(dir):
+def getfiles(input_dir):
     retList = []
-    dirs, files = xbmcvfs.listdir(xbmc.validatePath(dir))
-    [retList.extend(getfiles('%s/%s' % (dir, item))) for item in dirs]
-    [retList.append('%s/%s' % (dir, item)) for item in files]
+    dirs, files = xbmcvfs.listdir(input_dir)
+    [retList.extend(getfiles('%s/%s' % (input_dir, item))) for item in dirs]
+    [retList.append('%s/%s' % (input_dir, item)) for item in files]
     return retList
 
 def shuffleplay():
@@ -18,7 +18,8 @@ def shuffleplay():
 
     pDialog = xbmcgui.DialogProgress()
     pDialog.create('get video list')
-    files = getfiles(path)
+    # remove the tailing slash - so we do not have to use validatePath in the called function
+    files = getfiles(path[:-1])
     pDialog.close()
     if pDialog.iscanceled():
         return

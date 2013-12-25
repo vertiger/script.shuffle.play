@@ -1,2 +1,5 @@
+[B]Version 0.0.2[/B]
+- update for XBMC 13
+
 [B]Version 0.0.1[/B]
 - Initial version
